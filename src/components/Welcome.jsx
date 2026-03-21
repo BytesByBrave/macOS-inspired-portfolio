@@ -18,7 +18,7 @@ const renderText = (text, className, baseWeight = 400 ) => {
 
 const setupTextHover = (container, type) => {
     if(!container) return;
-    const letter = container.querySelectorAll("span");
+    const letters = container.querySelectorAll("span");
     const {min, max, default: base} =  FONT_WEIGHTS[type]
     const animateLetter = (letter, weight, duration = 0.25) => {
         return gsap.to(letter, {duration, ease: 'power2.out', fontVariationSettings: `'wght' ${weight}`,
@@ -37,16 +37,16 @@ const setupTextHover = (container, type) => {
             animateLetter(letter, min + (max - min) * intensity);
         });
     };
-    const handleMouseLeave = () => letter.forEach((letter) => animateLetter(letter, base, 0.3))
+    const handleMouseLeave = () => letters.forEach((l) => animateLetter(l, base, 0.3))
 
     container.addEventListener("mousemove", handleMouseMove)
-    container.addEventListener("mouseLeave", handleMouseLeave)
+    container.addEventListener("mouseleave", handleMouseLeave)
 
     return () => {
         container.removeEventListener("mousemove", handleMouseMove)
-        container.removeEventListener("mouseLeave", handleMouseLeave)
+        container.removeEventListener("mouseleave", handleMouseLeave)
     };
-}; 
+};  
 
 const Welcome = () => {
 
@@ -64,7 +64,7 @@ const Welcome = () => {
 
     return (
         <section id='welcome'>
-            <p ref={titleRef}>{renderText("Hy, I'm Bahadur! Welcome to my", "text-3xl font-georama")}</p>
+            <p ref={titleRef}>{renderText("Hi, I'm Bahadur! Welcome to my", "text-3xl font-georama")}</p>
             <h1 ref={subtitleRef} className='mt-7'>{renderText("portfolio", "text-9xl italic font-georama")}</h1>
             
             <div className='small-screen'>
