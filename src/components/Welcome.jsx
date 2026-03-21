@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 
 const FONT_WEIGHTS = {
@@ -9,7 +10,7 @@ const FONT_WEIGHTS = {
 
 const renderText = (text, className, baseWeight = 400 ) => {
     return [...text].map((char , i) => (
-        <span key={i} className={className} style={{fontVariationSettings: `'whgt ${baseWeight}`}}>
+        <span key={i} className={className} style={{fontVariationSettings: `'wght' ${baseWeight}`}}>
             {char === " " ? "\u00A0" : char}
         </span>
     ))
@@ -20,22 +21,46 @@ const setupTextHover = (container, type) => {
     const letter = container.querySelectorAll("span");
     const {min, max, default: base} =  FONT_WEIGHTS[type]
     const animateLetter = (letter, weight, duration = 0.25) => {
-        return gsap.to(letter, {duration, ease: 'power2.out', fontVariationSettings: `'whgt ${weight}`,})
-    }
+        return gsap.to(letter, {duration, ease: 'power2.out', fontVariationSettings: `'wght' ${weight}`,
+
+        });
+    };
     const handleMouseMove = (e) => {
         const {left} = container.getBoundingClientRect();
         const mouseX = e.clientX - left;
-
+    
         letters.forEach((letter) => {
-            const { left: l , width: w } =letter.getBoundingClientRect()
-        })
-    }
-} 
+            const { left: l , width: w } =letter.getBoundingClientRect();
+            const distance = Math.abs(mouseX - (l - left + w / 2));
+            const intensity = Math.exp(-(distance ** 2) / 20000)
+    
+            animateLetter(letter, min + (max - min) * intensity);
+        });
+    };
+    const handleMouseLeave = () => letter.forEach((letter) => animateLetter(letter, base, 0.3))
+
+    container.addEventListener("mousemove", handleMouseMove)
+    container.addEventListener("mouseLeave", handleMouseLeave)
+
+    return () => {
+        container.removeEventListener("mousemove", handleMouseMove)
+        container.removeEventListener("mouseLeave", handleMouseLeave)
+    };
+}; 
 
 const Welcome = () => {
 
     const titleRef = useRef(null)
     const subtitleRef = useRef(null)
+    useGSAP(()=> {
+        const titleCleanup = setupTextHover(titleRef.current, 'title');
+        const subtitleCleanup = setupTextHover(subtitleRef.current, 'subtitle');
+
+        return () => {
+            titleCleanup();
+            subtitleCleanup();
+        }
+    },[])
 
     return (
         <section id='welcome'>
