@@ -1,12 +1,14 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Tooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 import { dockApps } from '#constants'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import useWindowStore from '#store/window'
 
 const Dock = () => {
 
+    const { openWindow, closeWindow, windows } = useWindowStore();
     const dockRef = useRef()
 
     useGSAP(() => {
@@ -22,10 +24,10 @@ const Dock = () => {
                 const distance = Math.abs(mouseX - center);
 
                 // Tighten the curve so neighbors don't scale too much & overlap
-                const intensity = Math.exp(-(distance ** 2) / 3500);
+                const intensity = Math.exp(-(distance ** 2) / 3000);
 
                 gsap.to(icon, {
-                    scale: 1 + 0.25 * intensity, // Reduced max scale
+                    scale: 1 + 0.30 * intensity, // Reduced max scale
                     y: -10 * intensity,
                     transformOrigin: "bottom center",
                     duration: 0.2,
@@ -62,8 +64,22 @@ const Dock = () => {
         }
     },[]);
 
-    const toggleApp = (App) => {}
-    // TODO implement Open window Logic 
+    const toggleApp = (app) => {
+
+      if(!app.canOpen) return;
+      const window = windows[app.id]
+      if(window.isOpen){
+        closeWindow(app.id);
+      } else {
+        openWindow(app.id);
+      }
+
+    }
+    
+    useEffect(() => {
+        console.log("Updated Windows:", windows);
+    }, [windows]);
+
     return (
         <section id="dock">
             <div ref={dockRef} className='dock-container gap-3 px-3'>
