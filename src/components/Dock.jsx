@@ -65,15 +65,19 @@ const Dock = () => {
     },[]);
 
     const toggleApp = (app) => {
-
       if(!app.canOpen) return;
-      const window = windows[app.id]
-      if(window.isOpen){
+      
+      const win = windows[app.id];
+      if (!win) {
+        openWindow(app.id);
+        return;
+      }
+
+      if(win.isOpen){
         closeWindow(app.id);
       } else {
         openWindow(app.id);
       }
-
     }
     
     useEffect(() => {
