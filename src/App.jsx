@@ -6,7 +6,7 @@ const App = () => {
     <main>
       <Navbar/>
       <Welcome/>
-      <Dock/>
+      <Dock />
     </main>
   )
 }
