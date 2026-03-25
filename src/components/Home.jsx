@@ -4,13 +4,14 @@ import useWindowStore from '#store/window';
 import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
 import { Draggable } from 'gsap/all';
-import React from 'react'
+import React, { useRef } from 'react'
 
 
 const projects = locations.work?.children ?? [];
 
 const Home = () => {
 
+    const containerRef = useRef(null);
     const { setActiveLocation } = useLocationStore();
     const { openWindow } = useWindowStore();
     const handleOpenProjectFinder = (project) => {
@@ -19,11 +20,15 @@ const Home = () => {
     }
 
     useGSAP(() => {
-        Draggable.create(".folder")
+        const el = containerRef.current;
+        if (!el) return;
+        const folders = el.querySelectorAll('.folder');
+        const instances = Draggable.create(folders);
+        return () => instances.forEach((instance) => instance.kill());
     }, [])
 
     return (
-        <section id='home'>
+        <section id='home' ref={containerRef}>
             <ul>
                 {projects.map((project) => (
                     <li key={project.id} className={clsx("group folder", project.windowPosition)} onClick={()=> handleOpenProjectFinder(project)}>
