@@ -8,14 +8,13 @@ const windowWrapper = (Component, windowKey) => {
 
     const Wrapped = (props) => {
         const { focusWindow, windows } = useWindowStore();
-        const { isOpen, zIndex } = windows[windowKey]
+        const windowState = windows[windowKey];
+        const { isOpen = false, zIndex = 0 } = windowState || {};
         const ref = useRef(null)
 
         useGSAP(() => {
             const el = ref.current;
             if (!el || !isOpen) return;
-
-            el.style.display = "block ";
 
             gsap.fromTo(
                 el,
@@ -29,8 +28,7 @@ const windowWrapper = (Component, windowKey) => {
             const el = ref.current;
             if (!el) return;
             const [instance] = Draggable.create(el, {
-                onPress: () => focusWindow
-                    (windowKey)
+                onPress: () => focusWindow(windowKey)
             });
             return () => instance.kill()
         }, [])

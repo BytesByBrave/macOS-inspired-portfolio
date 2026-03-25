@@ -8,7 +8,7 @@ const Safari = () => {
     return (
         <>
         <div id='window-header'>
-            <WindowControls target="safari "/> 
+            <WindowControls target="safari"/> 
             <PanelLeft className='ml-10 icon '/>
 
             <div className='flex items-center gap-1 ml-5'>
@@ -43,7 +43,7 @@ const Safari = () => {
                         <div className='content'>
                             <p>{date}</p>
                             <h3>{title}</h3>
-                            <a href={link} target='blank' rel='noopener noreferrer'>
+                            <a href={link} target='_blank' rel='noopener noreferrer'>
                                 checkout the full post <MoveRight className='icon-hover '/> 
                             </a>
                         </div>
