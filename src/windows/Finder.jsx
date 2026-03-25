@@ -13,10 +13,10 @@ const Finder = () => {
     const { openWindow } = useWindowStore();
 
     const openItem = (item) => {
-        if(item.fileType === "pdf") return openWindow("resume")
-        if(item.kind === "folder") return setActiveLocation(item)
-        if(["fig", "url"].includes(item.fileType) && item.href)
-            return window.open(item.href, "_blank")    
+        if (item.fileType === "pdf") return openWindow("resume")
+        if (item.kind === "folder") return setActiveLocation(item)
+        if (["fig", "url"].includes(item.fileType) && item.href)
+            return window.open(item.href, "_blank")
 
         openWindow(`${item.fileType}${item.kind}`, item)
     }
@@ -50,7 +50,7 @@ const Finder = () => {
                     {renderList("My Projects", locations.work.children)}
                 </div>
                 <ul className='content'>
-                    {setActiveLocation?.children.map((item) => (
+                    {activeLocation?.children?.map((item) => (
                         <li
                             key={item.id}
                             className={item.position}
