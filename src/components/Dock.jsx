@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { Tooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 import { dockApps } from '#constants'
@@ -8,7 +8,7 @@ import useWindowStore from '#store/window'
 
 const Dock = () => {
 
-    const { openWindow, closeWindow, windows } = useWindowStore();
+    const { openWindow, closeWindow, restoreWindow, windows } = useWindowStore();
     const dockRef = useRef()
 
     useGSAP(() => {
@@ -73,16 +73,14 @@ const Dock = () => {
         return;
       }
 
-      if(win.isOpen){
+      if (win.isOpen && win.isMinimized) {
+        restoreWindow(app.id);
+      } else if (win.isOpen) {
         closeWindow(app.id);
       } else {
         openWindow(app.id);
       }
     }
-    
-    useEffect(() => {
-        console.log("Updated Windows:", windows);
-    }, [windows]);
 
     return (
         <section id="dock">
@@ -93,6 +91,7 @@ const Dock = () => {
                         type='button' 
                         className='dock-icon' 
                         aria-label={name} 
+                        data-dock-id={id}
                         data-tooltip-id="dock-tooltip"
                         data-tooltip-content={name}
                         data-tooltip-delay-show={150}
@@ -105,6 +104,9 @@ const Dock = () => {
                             className={canOpen ? "" : "opacity-60"}
                             />
                         </button>
+                        {windows[id]?.isOpen && (
+                            <div className="absolute -bottom-1 size-1 rounded-full bg-black/50" />
+                        )}
                     </div>
                 ))}
                 <Tooltip id='dock-tooltip' place='top' className='tooltip' />             

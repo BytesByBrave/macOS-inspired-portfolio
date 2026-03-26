@@ -17,7 +17,7 @@ const TextFile = () => {
                 <WindowControls target="txtfile" />
                 <h2>{name}</h2>
             </div>
-            <div className='p-5 space-y-6 text-sm bg-white text-gray-700 leading-relaxed'>
+            <div className='p-5 space-y-6 text-sm bg-white text-gray-700 leading-relaxed flex-1 overflow-auto w-full h-full'>
                 {image ? (
                     <div className='w-full'>
                         <img
