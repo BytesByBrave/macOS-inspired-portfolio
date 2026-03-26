@@ -44,7 +44,7 @@ const Finder = () => {
                 <WindowControls target="finder" />
                 <Search className='icon' />
             </div>
-            <div className='bg-white flex h-full'>
+            <div className='bg-white dark:bg-slate-900 flex h-full'>
                 <div className='sidebar'>
                     {renderList("Favorites", Object.values(locations))}
                     {renderList("My Projects", locations.work.children)}
