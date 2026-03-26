@@ -29,13 +29,13 @@ const Navbar = () => {
     return (
         <nav>
             <div>
-                <img src="/images/logo.svg" alt="logo " />
-                <p className='font-bold'>Bahadur's Portfolio</p>
+                <img src="/images/logo.svg" alt="logo " className="dark:invert"/>
+                <p className='font-bold dark:text-white'>Bahadur's Portfolio</p>
 
                 <ul>
                     {navLinks.map(({ id, name, type}) => (
                         <li key={id} onClick={() => openWindow(type)}>
-                            <p>{name}</p>
+                            <p className="dark:text-gray-200">{name}</p>
                         </li>
                     ))}
                 </ul>
