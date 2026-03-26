@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 html,
 body {
@@ -37,7 +38,7 @@ body {
   }
 
   nav {
-    @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl h-[44px] px-5 select-none;
+    @apply flex justify-between items-center bg-white/50 dark:bg-slate-900/50 backdrop-blur-3xl h-[44px] px-5 select-none;
 
     div {
       @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
@@ -63,7 +64,7 @@ body {
 
 @layer components {
   .icon {
-    @apply p-1 hover:bg-gray-200 rounded hover:cursor-default;
+    @apply p-1 hover:bg-gray-200 dark:hover:bg-slate-700/50 rounded hover:cursor-default transition-colors;
   }
 
   #welcome {
@@ -82,11 +83,11 @@ body {
     @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-[9999] select-none max-sm:hidden;
 
     .dock-container {
-      @apply bg-white/40 backdrop-blur-md border border-white/40 shadow-xl justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
+      @apply bg-white/40 dark:bg-slate-800/60 backdrop-blur-md border border-white/40 dark:border-slate-700 shadow-xl justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
     }
 
     .tooltip {
-      @apply !py-1 !px-3 !w-fit !text-center !text-xs !rounded-md !bg-blue-200 !text-blue-900 !shadow-2xl;
+      @apply !py-1 !px-3 !w-fit !text-center !text-xs !rounded-md !bg-blue-200 dark:!bg-slate-700 !text-blue-900 dark:!text-blue-100 !shadow-2xl;
     }
 
     .dock-icon {
@@ -115,25 +116,25 @@ body {
   }
 
   #window-header {
-    @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400;
+    @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 dark:bg-slate-800/90 border-b border-gray-200 dark:border-slate-700/50 select-none text-sm text-gray-400 dark:text-gray-300;
   }
 
   #safari {
-    @apply w-4xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-4xl absolute top-40 left-2/12 bg-white dark:bg-slate-900 dark:text-gray-200 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     .search {
-      @apply flex items-center gap-3 w-2/3 bg-white border border-gray-300 rounded-lg px-3 py-2;
+      @apply flex items-center gap-3 w-2/3 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-lg px-3 py-2;
 
       input {
-        @apply placeholder:text-gray-400;
+        @apply placeholder:text-gray-400 dark:bg-transparent dark:text-white outline-none;
       }
     }
 
     .blog {
-      @apply bg-white p-10 max-w-3xl mx-auto;
+      @apply bg-white dark:bg-slate-900 p-10 max-w-3xl mx-auto transition-colors;
 
       h2 {
-        @apply text-xl font-bold text-pink-600 mb-10;
+        @apply text-xl font-bold text-pink-600 dark:text-pink-500 mb-10;
       }
 
       .blog-post {
@@ -147,15 +148,15 @@ body {
           @apply col-span-10 space-y-3;
 
           p {
-            @apply text-xs text-gray-500;
+            @apply text-xs text-gray-500 dark:text-gray-400;
           }
 
           h3 {
-            @apply font-semibold text-base text-gray-800;
+            @apply font-semibold text-base text-gray-800 dark:text-gray-200;
           }
 
           a {
-            @apply text-blue-600 text-xs hover:underline flex items-center gap-3;
+            @apply text-blue-600 dark:text-blue-400 text-xs hover:underline flex items-center gap-3;
           }
         }
       }
@@ -163,7 +164,7 @@ body {
   }
 
   #terminal {
-    @apply w-xl absolute top-32 left-1/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-xl absolute top-32 left-1/12 bg-white dark:bg-slate-950 dark:text-gray-300 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     h2 {
       @apply font-bold text-sm text-center w-full;
@@ -177,7 +178,7 @@ body {
       }
 
       .content {
-        @apply py-5 my-5 border-y border-dashed space-y-1;
+        @apply py-5 my-5 border-y border-dashed dark:border-slate-800 space-y-1;
 
         li {
           .check {
@@ -185,7 +186,7 @@ body {
           }
 
           h3 {
-            @apply font-semibold text-[#00A154] w-32 ms-5;
+            @apply font-semibold text-[#00A154] dark:text-[#00df73] w-32 ms-5;
           }
 
           ul {
@@ -209,7 +210,7 @@ body {
   }
 
   #contact {
-    @apply w-[672px] absolute top-60 left-5/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-[672px] absolute top-60 left-5/12 bg-white dark:bg-slate-900 dark:text-gray-200 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     h2 {
       @apply font-bold text-sm text-center w-full;
@@ -237,10 +238,10 @@ body {
   }
 
   #photos {
-    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white dark:bg-slate-900 dark:text-gray-200 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     .sidebar {
-      @apply w-3/12 flex-none bg-gray-50 border-r border-gray-200 flex flex-col p-5;
+      @apply w-3/12 flex-none bg-gray-50 dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col p-5;
 
       h2 {
         @apply text-xs font-medium text-gray-400 mb-1;
@@ -251,7 +252,7 @@ body {
           @apply flex space-y-1 items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors;
 
           &:first-child {
-            @apply bg-blue-100 text-blue-700;
+            @apply bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300;
           }
 
           img {
@@ -259,7 +260,7 @@ body {
           }
 
           p {
-            @apply text-sm font-medium;
+            @apply text-sm font-medium dark:text-gray-300;
           }
         }
       }
@@ -297,7 +298,7 @@ body {
   }
 
   #resume {
-    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-fit h-fit absolute top-16 left-7/12 bg-white dark:bg-slate-900 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     #window-header {
       h2 {
@@ -307,10 +308,10 @@ body {
   }
 
   #finder {
-    @apply absolute w-3xl left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl;
+    @apply absolute w-3xl left-40 top-20 bg-white dark:bg-slate-900 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl;
 
     .sidebar {
-      @apply w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3;
+      @apply w-48 bg-gray-50 dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col p-5 space-y-3;
 
       h3 {
         @apply text-xs font-medium text-gray-400 mb-1;
@@ -320,11 +321,11 @@ body {
         @apply space-y-1;
 
         .active {
-          @apply bg-blue-100 text-blue-700;
+          @apply bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300;
         }
 
         .not-active {
-          @apply text-gray-700 hover:bg-gray-200;
+          @apply text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700;
         }
 
         li {
@@ -334,7 +335,7 @@ body {
     }
 
     .content {
-      @apply flex-1 p-8 bg-white max-w-2xl relative;
+      @apply flex-1 p-8 bg-white dark:bg-slate-900 dark:text-white max-w-2xl relative;
 
       li {
         @apply absolute flex items-center flex-col gap-3;
@@ -351,7 +352,7 @@ body {
   }
 
   #txtfile {
-    @apply w-md absolute top-36 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-md absolute top-36 right-32 bg-white dark:bg-slate-900 dark:text-gray-200 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     h2 {
       @apply font-bold text-sm text-center w-full;
@@ -359,16 +360,16 @@ body {
   }
 
   #imgfile {
-    @apply w-xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-xl absolute top-40 left-2/12 bg-white dark:bg-slate-900 dark:text-gray-200 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     #window-header {
       p {
-        @apply font-bold text-[#5f6266];
+        @apply font-bold text-[#5f6266] dark:text-gray-300;
       }
     }
 
     .preview {
-      @apply p-2 bg-gray-200 max-h-[70vh];
+      @apply p-2 bg-gray-200 dark:bg-slate-800 max-h-[70vh];
 
       img {
         @apply w-full h-fit object-contain object-center;

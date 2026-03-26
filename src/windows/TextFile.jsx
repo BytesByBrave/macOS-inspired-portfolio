@@ -17,7 +17,7 @@ const TextFile = () => {
                 <WindowControls target="txtfile" />
                 <h2>{name}</h2>
             </div>
-            <div className='p-5 space-y-6 text-sm bg-white text-gray-700 leading-relaxed flex-1 overflow-auto w-full h-full'>
+            <div className='p-5 space-y-6 text-sm bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-300 leading-relaxed flex-1 overflow-auto w-full h-full'>
                 {image ? (
                     <div className='w-full'>
                         <img
@@ -29,7 +29,7 @@ const TextFile = () => {
                 ) : null}
                 {subtitle ? <h3 className='text-lg font-semibold'>{subtitle}</h3> : null}
                 {Array.isArray(description) && description.length > 0 ? (
-                    <div className='space-y-3 leading-relaxed text-base text-gray-800'>
+                    <div className='space-y-3 leading-relaxed text-base text-gray-800 dark:text-gray-200'>
                         {description.map((para, idx) => (
                             <p key={idx}>{para}</p>
                         ))}
