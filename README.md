@@ -4,8 +4,8 @@ Welcome to my interactive **macOS-Inspired Developer Portfolio**. This project c
 
 Users can browse through dynamic windows, open folders via a Finder experience, read articles in Safari, view my tech stack in the Terminal, and review my real resume through an integrated PDF viewer. Every interaction is designed to feel highly native and fluid.
 
-## 🚀 Live Demo
-*(Insert Live Deployment Link Here)*
+##  Live Demo
+*https://macos-inspired-portfolio-topaz.vercel.app/*
 
 ---
 
@@ -81,7 +81,7 @@ If you want to spin up the local environment and see it in action:
 
 1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/BytesByBrave/macOS-inspired-portfolio.git
    ```
 2. **Install dependencies:**
    ```bash
