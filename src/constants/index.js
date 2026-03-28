@@ -101,28 +101,32 @@ const blogPosts = [
 
 const techStack = [
     {
+        category: "Languages",
+        items: ["JavaScript", "TypeScript", "Python"],
+    },
+    {
         category: "Frontend",
-        items: ["React.js", "Next.js", "TypeScript"],
+        items: ["React.js", "Next.js",],
     },
     {
         category: "Mobile",
-        items: ["React Native", "Expo"],
+        items: ["React Native", "Electron",],
     },
     {
         category: "Styling",
-        items: ["Tailwind CSS", "Sass", "CSS"],
+        items: ["Tailwind CSS", "Framer Motion", "Three.js",],
     },
     {
         category: "Backend",
-        items: ["Node.js", "Express", "NestJS", "Hono"],
+        items: ["Node.js", "Express", "NestJS",],
     },
     {
         category: "Database",
-        items: ["MongoDB", "PostgreSQL"],
+        items: ["MongoDB", "PostgreSQL", "MySQL"],
     },
     {
         category: "Dev Tools",
-        items: ["Git", "GitHub", "Docker"],
+        items: ["Git", "GitHub", "Docker","Vercel",],
     },
 ];
 
@@ -132,28 +136,28 @@ const socials = [
         text: "Github",
         icon: "/icons/github.svg",
         bg: "#f4656b",
-        link: "https://github.com/JavaScript-Mastery-Pro",
+        link: "https://github.com/BytesByBrave",
     },
     {
         id: 2,
-        text: "Platform",
+        text: "Instagram",
         icon: "/icons/atom.svg",
         bg: "#4bcb63",
-        link: "https://jsmastery.com/",
+        link: "https://www.instagram.com/bytesbybrave/",
     },
     {
         id: 3,
-        text: "Twitter/X",
-        icon: "/icons/twitter.svg",
-        bg: "#ff866b",
-        link: "https://x.com/jsmasterypro",
-    },
-    {
-        id: 4,
         text: "LinkedIn",
         icon: "/icons/linkedin.svg",
         bg: "#05b6f6",
-        link: "https://www.linkedin.com/company/javascriptmastery/posts/?feedView=all",
+        link: "https://www.linkedin.com/in/bahadurali71/",
+    },
+    {
+        id: 4,
+        text: "Twitter/X",
+        icon: "/icons/twitter.svg",
+        bg: "#ff866b",
+        link: "https://x.com/bahadur_al92117",
     },
 ];
 
@@ -188,19 +192,27 @@ const photosLinks = [
 const gallery = [
     {
         id: 1,
-        img: "/images/gal1.png",
+        img: "/images/gallery1.png",
     },
     {
         id: 2,
-        img: "/images/gal2.png",
+        img: "/images/gallery2.png",
     },
     {
         id: 3,
-        img: "/images/gal3.png",
+        img: "/images/gallery3.png",
     },
     {
         id: 4,
-        img: "/images/gal4.png",
+        img: "/images/gallery4.png",
+    },
+    {
+        id: 5,
+        img: "/images/custom1.jpg",
+    },
+    {
+        id: 6,
+        img: "/images/custom2.jpg",
     },
 ];
 

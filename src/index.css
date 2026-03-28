@@ -8,7 +8,7 @@ body {
   width: 100dvw;
   overflow: hidden;
   height: 100dvh;
-  background-image: url("/images/wallpaper.png");
+  background-image: url("/images/wallpaper2.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -267,17 +267,18 @@ body {
     }
 
     .gallery {
-      @apply p-5;
+      @apply p-5 flex-1 overflow-y-auto max-h-[60vh] w-full;
 
       ul {
-        @apply grid grid-cols-5 grid-rows-5 gap-2.5;
+        @apply grid grid-cols-5 auto-rows-[80px] sm:auto-rows-[100px] gap-2.5;
 
         li {
+          @apply cursor-pointer hover:scale-[1.02] transition-transform duration-300;
           img {
             @apply size-full object-cover rounded-lg;
           }
 
-          &:first-child {
+          &:nth-child(1) {
             @apply row-start-1 row-span-3 col-start-1 col-span-3;
           }
 
@@ -289,8 +290,20 @@ body {
             @apply row-start-4 row-span-2 col-start-3 col-span-3;
           }
 
-          &:last-child {
+          &:nth-child(4) {
             @apply row-start-4 row-span-2 col-start-1 col-span-2;
+          }
+
+          &:nth-child(5) {
+            @apply row-start-6 row-span-3 col-start-1 col-span-2;
+          }
+
+          &:nth-child(6) {
+            @apply row-start-6 row-span-3 col-start-3 col-span-3;
+          }
+
+          &:nth-child(7) {
+            @apply row-start-9 row-span-3 col-start-1 col-span-5;
           }
         }
       }
@@ -369,10 +382,10 @@ body {
     }
 
     .preview {
-      @apply p-2 bg-gray-200 dark:bg-slate-800 max-h-[70vh];
+      @apply p-2 bg-gray-200 dark:bg-slate-800 max-h-[70vh] flex items-center justify-center;
 
       img {
-        @apply w-full h-fit object-contain object-center;
+        @apply max-w-full max-h-[65vh] object-contain object-center;
       }
     }
   }
